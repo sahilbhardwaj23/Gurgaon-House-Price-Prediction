@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore")  # Suppress all warnings
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -24,9 +27,7 @@ fig = px.scatter_mapbox(group_df, lat="latitude", lon="longitude", color="price_
                   mapbox_style="open-street-map",width=1200,height=700,hover_name=group_df.index)
 
 st.plotly_chart(fig,use_container_width=True)
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
 st.header('Features Wordcloud')
 sector = st.selectbox('Select Sector ',['gwal pahari','manesar','sector 1','sector 10',
  'sector 102',
@@ -131,11 +132,11 @@ wordcloud = WordCloud(width = 800, height = 800,
                       stopwords = set(['s']),  # Any stopwords you'd like to exclude
                       min_font_size = 10).generate(feature_text)
 
-plt.figure(figsize = (8, 8), facecolor = None)
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis("off")
-plt.tight_layout(pad = 0)
-st.pyplot()
+fig, ax = plt.subplots(figsize=(8, 8), facecolor=None)
+ax.imshow(wordcloud, interpolation='bilinear')
+ax.axis("off")
+plt.tight_layout(pad=0)
+st.pyplot(fig)
 
 
 # Load the CSV file containing longitude and latitude coordinates
