@@ -6,13 +6,9 @@ import numpy as np
 st.set_page_config(page_title="Viz Demo")
 
 
-
-# with open('df.pkl','rb') as file:
-#     df = pickle.load(file)
-
 with open('df.pkl', 'rb') as file:
     df = pickle.load(file)
-print(df.head())
+
 
 with open('pipeline.pkl','rb') as file:
     pipeline = pickle.load(file)
